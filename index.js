@@ -1,38 +1,31 @@
 class Usuario {
   constructor(name, lastname, books, pets) {
-    this.name = name
-    this.lastname = lastname
-    this.books = books
-    this.pets = pets
+    this.name = name;
+    this.lastname = lastname;
+    this.books = books;
+    this.pets = pets;
   }
 
-  getFullName = function () {
+  getFullName() {
     return `Nombre completo: ${this.name} ${this.lastname}`;
-  };
+  }
 
-  addMascota = function (newMascota = "loro") {
-    this.pets.push(newMascota);
-    return this.pets;
-  };
+  addMascota(newPet) {
+    this.pets = [...this.pets, newPet];
+  }
 
-  countMascotas = function () {
-    return this.pets.length;
-  };
+  countMascotas() {
+    console.log(`Cantidad de mascotas: ${this.pets.length}`);
+  }
 
-  addBook = function (
-    newBook = {
-      title: "El Túnel",
-      autor: "Ernesto Sábato",
-    }
-  ) {
-    this.books.push(newBook);
-    return this.books;
-  };
+  addBook(newTitle, newAutor) {
+    this.books = [...this.books, {title: newTitle, autor: newAutor}];
+  }
 
-  getBookNames = function () {
-    const titleBooks = this.books.map(({ title }) => title);
-    return titleBooks;
-  };
+  getBookNames() {
+    let titles = this.books.map(({ title }) => title);
+    return console.log(`Títulos: ${titles}`)
+  }
 }
 
 const usuario = new Usuario(
@@ -44,10 +37,11 @@ const usuario = new Usuario(
   ],
   ["perro", "gato"]
 );
+usuario.addMascota("loro");
+usuario.addBook("El Túnel", "Ernesto Sábato"
+);
 
-console.log(usuario.getFullName())
-console.log(usuario.addMascota())
-console.log(usuario.countMascotas())
-console.log(usuario.addBook())
-console.log(usuario.getBookNames())
-;
+console.log(usuario);
+console.log(usuario.getFullName());
+console.log(usuario.countMascotas());
+console.log(usuario.getBookNames());
