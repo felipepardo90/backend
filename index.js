@@ -1,9 +1,9 @@
 class Usuario {
   constructor(name, lastname, books, pets) {
-    this.name = name;
-    this.lastname = lastname;
-    this.books = books;
-    this.pets = pets;
+    this.name = name
+    this.lastname = lastname
+    this.books = books
+    this.pets = pets
   }
 
   getFullName = function () {
