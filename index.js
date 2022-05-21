@@ -10,21 +10,23 @@ class Usuario {
     return `Nombre completo: ${this.name} ${this.lastname}`;
   }
 
-  addMascota(newPet) {
-    this.pets = [...this.pets, newPet];
+  addMascota(pet) {
+    this.pets = [...this.pets, pet];
   }
 
   countMascotas() {
     console.log(`Cantidad de mascotas: ${this.pets.length}`);
+    return this.pets.length
   }
 
-  addBook(newTitle, newAutor) {
-    this.books = [...this.books, {title: newTitle, autor: newAutor}];
+  addBook(title, author) {
+    this.books = [...this.books, {title, author}];
   }
 
   getBookNames() {
     let titles = this.books.map(({ title }) => title);
-    return console.log(`Títulos: ${titles}`)
+    console.log(`Títulos: ${titles.join('---')}`)
+    return titles
   }
 }
 
@@ -32,8 +34,8 @@ const usuario = new Usuario(
   "Felipe",
   "Pardo",
   [
-    { title: "Rayuela", autor: "Julio Cortázar" },
-    { title: "El hombre en busca de sentido", autor: "Victor Frankl" },
+    { title: "Rayuela", author: "Julio Cortázar" },
+    { title: "El hombre en busca de sentido", author: "Victor Frankl" },
   ],
   ["perro", "gato"]
 );
@@ -45,3 +47,26 @@ console.log(usuario);
 console.log(usuario.getFullName());
 console.log(usuario.countMascotas());
 console.log(usuario.getBookNames());
+
+
+// let operation = (x, y, operator) =>{
+// return operator(x, y)
+// }
+
+// let sumar = (x,y)=>{
+//   return x + y
+// }
+// let restar = (x,y)=>{
+//   return x - y
+// }
+// let multiplicar = (x,y)=>{
+//   return x * y
+// }
+// let dividir = (x,y)=>{
+//   return x / y
+// }
+// let modulo = (x,y)=>{
+//   return x % y
+// }
+
+// console.log(operation(3, 5, sumar))
