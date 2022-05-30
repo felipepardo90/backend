@@ -102,26 +102,49 @@
 
 const fs = require("fs");
 
-class Contenedor {
-  constructor(filename) {
-    this.filename = filename;
-  }
-  // save = (object) => {
+const productsArray = [
+  // {
+  //   title: "Cerveza",
+  //   price: "350",
+  //   thumbnail:
+  //     "https://th.bing.com/th/id/R.46ab627bc557b8a23427ae4a4fcb71c8?rik=ggMSwzu9TjyUkA&riu=http%3a%2f%2fwww.2000agro.com.mx%2fwp-content%2fuploads%2fcerveza-leche-1.jpg&ehk=%2fY0s4XibrWW%2fvngOzbpe3W3cgKGoIPsJKC0Gsv%2b27eA%3d&risl=&pid=ImgRaw&r=0",
+  // },
+  // {
+  //   title: "Vino",
+  //   price: "300",
+  //   thumbnail:
+  //     "https://th.bing.com/th/id/OIP.im0JpPU66JTk_Tv4v6uASQHaE7?pid=ImgDet&rs=1",
+  // },
+  // {
+  //   title: "Licor",
+  //   price: "250",
+  //   thumbnail:
+  //     "https://www.gastronomicspain.com/1474-large_default/licor-43.jpg",
+  // },
+];
 
-  //   //Recibe un objeto, lo guarda en el archivo, devuelve el ID asignado
-  //   let route = `${this.filename}`
-  //   let data = JSON.stringify(object)
-  //   fs.appendFile(route, data, (error) => {
-  //     error
-  //       ? console.log(`Se ha producido un error en appendFile: ${error}`)
-  //       : console.log(`el objeto ${data} se ha almacenado correctamente`);
-  //   })
-    
-  //   console.log(
-  //     `se ha asignado el siguiente id único para su producto: ${object.id}`
-  //   );
-  //   return object.id;
-  // };
+class Contenedor {
+  constructor(filename, array) {
+    this.filename = filename;
+    this.products = array;
+  }
+  save = (object) => {
+    //Recibe un objeto, lo guarda en el archivo, devuelve el ID asignado
+    this.products = [...this.products, object];
+
+    let route = `${this.filename}`;
+    let data = JSON.stringify(this.products);
+    fs.appendFile(route, data, (error) => {
+      error
+        ? console.log(`Se ha producido un error en writeFile: ${error}`)
+        : console.log(`el objeto ${data} se ha almacenado correctamente`);
+    });
+
+    console.log(
+      `se ha asignado el siguiente id único para su producto: ${object.id}`
+    );
+    return object.id;
+  };
 
   //   getById = (number) => {
   //     //Recibe un ID y devuelve un objeto con ese ID, o null si no está
@@ -144,31 +167,34 @@ class Contenedor {
   //   });
   // };
 
-    deleteById =(number)=>{
-      //Elimina del archivo el objeto con el ID buscado
-      
-      let route = `${this.filename}`
-      let rawdata = fs.readFile(route, "utf-8", error=>console.log(`Se ha producido un error en RAWDATA: ${error}`))
-      let dataCollection = JSON.parse(rawdata)
+  // deleteById = (number) => {
+  //   //Elimina del archivo el objeto con el ID buscado
 
-      
-
-    }
+  //   let route = `${this.filename}`;
+  //   let rawdata = fs.readFile(route, "utf-8", (error) =>
+  //     console.log(`Se ha producido un error en RAWDATA: ${error}`)
+  //   );
+  //   let dataCollection = JSON.parse(rawdata);
+  // };
 
   //   deleteAll=()=>{
   //     //Elimina todos los objetos presentes en el archivo
   //   }
 }
 
-const file = new Contenedor("./products.json");
+const file = new Contenedor("./products.json", productsArray);
 
-// file.save({
-//   title: "jugo natural",
-//   price: "200",
-//   thumbnail:
-//     "https://th.bing.com/th/id/R.5a9c261f9e3737fa248429c4aa93c5d3?rik=475xNgV2Jg0MQg&riu=http%3a%2f%2fpirapolitica.com%2fwp-content%2fuploads%2f2019%2f10%2fel-jugo-de-naranja.jpg&ehk=7W1hS%2fYlYo8qlYNukWgHh%2biPmyQwUcnGu0uXsLhYoe8%3d&risl=&pid=ImgRaw&r=0",
-// });
+file.save({
+  title: "Vino",
+    price: "300",
+    thumbnail:
+      "https://th.bing.com/th/id/OIP.im0JpPU66JTk_Tv4v6uASQHaE7?pid=ImgDet&rs=1",
+  // title: "jugo natural",
+  // price: "200",
+  // thumbnail:
+  //   "https://th.bing.com/th/id/R.5a9c261f9e3737fa248429c4aa93c5d3?rik=475xNgV2Jg0MQg&riu=http%3a%2f%2fpirapolitica.com%2fwp-content%2fuploads%2f2019%2f10%2fel-jugo-de-naranja.jpg&ehk=7W1hS%2fYlYo8qlYNukWgHh%2biPmyQwUcnGu0uXsLhYoe8%3d&risl=&pid=ImgRaw&r=0",
+});
 
 // file.getAll();
 
-file.deleteById(1)
+// file.deleteById(1);
