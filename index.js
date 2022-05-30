@@ -2,30 +2,29 @@ const fs = require("fs");
 
 class Contenedor {
   constructor(filename) {
-    fs.writeFile(`${filename}`, "[]");
+    fs.writeFileSync(filename, "[]");
     this.filename = filename;
-    this.arrayCall = JSON.parse(`${filename}`, "utf-8");
     this.id = 0;
   }
   save = (object) => {
     //Recibe un objeto, lo guarda en el archivo, devuelve el ID asignado
     this.id++;
     object.id = this.id;
-    this.arrayCall = [...this.arrayCall, object];
-    let newData = JSON.stringify(this.arrayCall);
-    fs.writeFile (`${this.filename}`, `${newData}`, (err, jsonString) => {
-      if (err){
-        console.log (`Se ha producido un error en save-line19: ${err}`)
-      }else{
-        const data = JSON.parse(jsonString)
-        console.log(`Se ha agregado exitosamente ${data.title}`)
+    fs.readFile(this.filename, "utf-8", (err, data) => {
+      if (err) {
+        console.log(`No se puede leer el archivo: ${err}`);
+      } else {
+        let parseData = JSON.parse(data);
+        // parseData.push(object)
+        parseData = [...parseData, object];
+        console.log("data", parseData);
       }
-    })
+    });
 
     console.log(
-      `se ha asignado el siguiente id único para su producto: ${object.id}`
+      `se ha asignado el siguiente id único para su producto: ${this.id}`
     );
-    return object.id;
+    return this.id;
   };
 
   //   getById = (number) => {
