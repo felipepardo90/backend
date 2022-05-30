@@ -1,144 +1,26 @@
-// class Usuario {
-//   constructor(name, lastname, books, pets) {
-//     this.name = name;
-//     this.lastname = lastname;
-//     this.books = books;
-//     this.pets = pets;
-//   }
-
-//   getFullName = () => `Nombre completo: ${this.name} ${this.lastname}`;
-
-//   addMascota = (pet) => (this.pets = [...this.pets, pet]);
-
-//   countMascotas = () => {
-//     console.log(`Cantidad de mascotas: ${this.pets.length}`);
-//     return this.pets.length;
-//   };
-
-//   addBook = (title, author) =>
-//     (this.books = [...this.books, { title, author }]);
-
-//   getBookNames = () => {
-//     let titles = this.books.map(({ title }) => title);
-//     console.log(`Títulos: ${titles.join(" --- ")}`);
-//     return titles;
-//   };
-// }
-
-// const usuario = new Usuario(
-//   "Felipe",
-//   "Pardo",
-//   [
-//     { title: "Rayuela", author: "Julio Cortázar" },
-//     { title: "El hombre en busca de sentido", author: "Victor Frankl" },
-//   ],
-//   ["perro", "gato"]
-// );
-// usuario.addMascota("loro");
-// usuario.addBook("El Túnel", "Ernesto Sábato");
-
-// console.log(usuario);
-// console.log(usuario.getFullName());
-// console.log(usuario.countMascotas());
-// console.log(usuario.getBookNames());
-
-// let operation = (x, y, operator) => operator(x, y);
-
-// let sumar = (x, y) => x + y;
-// let restar = (x, y) => x - y;
-// let multiplicar = (x, y) => x * y;
-// let dividir = (x, y) => x / y;
-// let modulo = (x, y) => x % y;
-
-// console.log(operation(3, 5, sumar));
-
-// const fin = () => console.log("terminé");
-// const mostrarLetras = (word, cb) => {
-//   let i = 0;
-
-//   let charCounter = setInterval(() => {
-//     console.log(word[i++]);
-//     if (i === word.length) {
-//       clearInterval(charCounter);
-//       cb();
-//     }
-//   }, 1000);
-// };
-
-// mostrarLetras("¡Hola!", fin);
-
-// const fs = require("fs");
-
-// const myArray = [
-//   { ciudad: "Salta", población: 10000 },
-//   { ciudad: "Tartagal", población: 5000 },
-//   { ciudad: "Gral Güemes", población: 2000 },
-// ];
-
-// fs.mkdir("./ciudades", (error) => {
-//   error
-//     ? console.log(`hubo un error ${error} `)
-//     : console.log("la carpeta ciudades se creo correctamente");
-// });
-
-// fs.writeFile("./ciudades/ciudades.txt", JSON.stringify(myArray), (error) => {
-//   error
-//     ? console.log(`hubo un error ${error} `)
-//     : console.log("el archivo ciudades se creo correctamente");
-// });
-
-// fs.readFile("./ciudades/ciudades.txt", (error, data) => {
-//   if (error) {
-//     console.log(`hubo un error ${error} `);
-//   } else {
-//     const log = JSON.parse(data).map((value) => {
-//       return `
-//         Ciudad: ${value.ciudad}
-//         Población: ${value.población}`;
-//     });
-//     console.log(log);
-//   }
-// });
-
 const fs = require("fs");
 
-const productsArray = [
-  // {
-  //   title: "Cerveza",
-  //   price: "350",
-  //   thumbnail:
-  //     "https://th.bing.com/th/id/R.46ab627bc557b8a23427ae4a4fcb71c8?rik=ggMSwzu9TjyUkA&riu=http%3a%2f%2fwww.2000agro.com.mx%2fwp-content%2fuploads%2fcerveza-leche-1.jpg&ehk=%2fY0s4XibrWW%2fvngOzbpe3W3cgKGoIPsJKC0Gsv%2b27eA%3d&risl=&pid=ImgRaw&r=0",
-  // },
-  // {
-  //   title: "Vino",
-  //   price: "300",
-  //   thumbnail:
-  //     "https://th.bing.com/th/id/OIP.im0JpPU66JTk_Tv4v6uASQHaE7?pid=ImgDet&rs=1",
-  // },
-  // {
-  //   title: "Licor",
-  //   price: "250",
-  //   thumbnail:
-  //     "https://www.gastronomicspain.com/1474-large_default/licor-43.jpg",
-  // },
-];
-
 class Contenedor {
-  constructor(filename, array) {
+  constructor(filename) {
+    fs.writeFile(`${filename}`, "[]");
     this.filename = filename;
-    this.products = array;
+    this.arrayCall = JSON.parse(`${filename}`, "utf-8");
+    this.id = 0;
   }
   save = (object) => {
     //Recibe un objeto, lo guarda en el archivo, devuelve el ID asignado
-    this.products = [...this.products, object];
-
-    let route = `${this.filename}`;
-    let data = JSON.stringify(this.products);
-    fs.appendFile(route, data, (error) => {
-      error
-        ? console.log(`Se ha producido un error en writeFile: ${error}`)
-        : console.log(`el objeto ${data} se ha almacenado correctamente`);
-    });
+    this.id++;
+    object.id = this.id;
+    this.arrayCall = [...this.arrayCall, object];
+    let newData = JSON.stringify(this.arrayCall);
+    fs.writeFile (`${this.filename}`, `${newData}`, (err, jsonString) => {
+      if (err){
+        console.log (`Se ha producido un error en save-line19: ${err}`)
+      }else{
+        const data = JSON.parse(jsonString)
+        console.log(`Se ha agregado exitosamente ${data.title}`)
+      }
+    })
 
     console.log(
       `se ha asignado el siguiente id único para su producto: ${object.id}`
@@ -182,13 +64,13 @@ class Contenedor {
   //   }
 }
 
-const file = new Contenedor("./products.json", productsArray);
+const file = new Contenedor("./products.json");
 
 file.save({
   title: "Vino",
-    price: "300",
-    thumbnail:
-      "https://th.bing.com/th/id/OIP.im0JpPU66JTk_Tv4v6uASQHaE7?pid=ImgDet&rs=1",
+  price: "300",
+  thumbnail:
+    "https://th.bing.com/th/id/OIP.im0JpPU66JTk_Tv4v6uASQHaE7?pid=ImgDet&rs=1",
   // title: "jugo natural",
   // price: "200",
   // thumbnail:
