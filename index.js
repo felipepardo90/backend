@@ -2,14 +2,20 @@ const fs = require("fs");
 
 class Contenedor {
   constructor(filename) {
-    fs.writeFileSync(filename, "[]");
     this.filename = filename;
-    this.id = 0;
+     fs.promises.writeFile(filename, "")
   }
-  save = (object) => {
+  save = async (object) => {
+
     //Recibe un objeto, lo guarda en el archivo, devuelve el ID asignado
-    this.id++;
-    object.id = this.id;
+    let productsArr = [object];
+    object.id = productsArr.length;
+    console.log("object", object);
+    try {
+      
+    } catch (error) {
+      err && console.log(`Se ha producido un error en TRY-16: ${err}`)
+    }
     fs.readFile(this.filename, "utf-8", (err, data) => {
       if (err) {
         console.log(`No se puede leer el archivo: ${err}`);
