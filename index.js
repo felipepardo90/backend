@@ -47,7 +47,7 @@ class Contenedor {
     let data = await fs.promises.readFile(this.filename, "utf-8");
     // console.log(data, "data")
     let arrData = JSON.parse(data);
-    console.log(arrData, "arrData")
+    // console.log(arrData, "arrData")
     return arrData;
   };
 
@@ -72,6 +72,7 @@ class Contenedor {
 
   deleteAll = () => {
     //Elimina todos los objetos presentes en el archivo
+    console.log("Se han eliminado todos los elementos")
     fs.promises.writeFile(this.filename, "");
   };
 }
@@ -86,7 +87,7 @@ const saveFunction = async () => {
   });
 
   await file.save({
-    title: "jugo natural",
+    title: "Jugo natural",
     price: "200",
     thumbnail: "foto-jugo",
   });
@@ -103,11 +104,17 @@ const saveFunction = async () => {
     thumbnail: "foto-awita",
   });
 
+  await file.save({
+    title: "Licor",
+    price: "270",
+    thumbnail: "foto-licor",
+  });
+
   // await file.getById(6);
 
   // await file.getAll();
 
-  // await file.deleteById(4);
+  // await file.deleteById(2);
 
   // await file.deleteAll(); /* DESCOMENTAR PARA HACER QUE FUNCIONE */
 };

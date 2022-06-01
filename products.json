@@ -6,12 +6,6 @@
     "id": 1
   },
   {
-    "title": "jugo natural",
-    "price": "200",
-    "thumbnail": "foto-jugo",
-    "id": 2
-  },
-  {
     "title": "Cerveza",
     "price": "350",
     "thumbnail": "foto-cerveza",
@@ -22,5 +16,11 @@
     "price": "150",
     "thumbnail": "foto-awita",
     "id": 4
+  },
+  {
+    "title": "prueba 6",
+    "price": "000",
+    "thumbnail": "",
+    "id": 6
   }
 ]
