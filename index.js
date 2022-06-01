@@ -3,85 +3,113 @@ const fs = require("fs");
 class Contenedor {
   constructor(filename) {
     this.filename = filename;
-     fs.promises.writeFile(filename, "")
+    fs.promises.writeFile(filename, "[]");
   }
   save = async (object) => {
-
     //Recibe un objeto, lo guarda en el archivo, devuelve el ID asignado
-    let productsArr = [object];
-    object.id = productsArr.length;
-    console.log("object", object);
-    try {
-      
-    } catch (error) {
-      err && console.log(`Se ha producido un error en TRY-16: ${err}`)
-    }
-    fs.readFile(this.filename, "utf-8", (err, data) => {
-      if (err) {
-        console.log(`No se puede leer el archivo: ${err}`);
-      } else {
-        let parseData = JSON.parse(data);
-        // parseData.push(object)
-        parseData = [...parseData, object];
-        console.log("data", parseData);
-      }
-    });
+    let data = await fs.promises.readFile(this.filename, "utf-8");
+    let arrData = JSON.parse(data);
 
-    console.log(
-      `se ha asignado el siguiente id único para su producto: ${this.id}`
-    );
-    return this.id;
+    try {
+      arrData = [...arrData, object];
+      object.id = arrData.length;
+      await fs.promises.writeFile(
+        this.filename,
+        JSON.stringify(arrData, null, 2)
+      );
+      return object.id;
+    } catch (err) {
+      console.log(`No se ha podido guardar el objeto: ${err}`);
+    }
   };
 
-  //   getById = (number) => {
-  //     //Recibe un ID y devuelve un objeto con ese ID, o null si no está
-  //     number ? products.id : null;
-  //   };
+  getById = async (numberID) => {
+    //Recibe un ID y devuelve un objeto con ese ID, o null si no está
+    let data = await fs.promises.readFile(this.filename, "utf-8");
+    // console.log(data, "data")
+    let arrData = JSON.parse(data);
+    // console.log(arrData, "arrData")
+    let findID = arrData.find(({ id }) => id == numberID);
+    // console.log(findID, "findID")
+    try {
+      findID == undefined
+        ?  console.log(null)
+        : console.log(`Producto: ${numberID} => ${findID.title}`);
+    } catch (error) {
+      console.log(`Error en el procesamiento de búsqueda: ${error}`);
+    }
 
-  // getAll = () => {
-  //   //Devuelve un array con los objetos presentes en el archivo
-  //   fs.readFile(`${this.filename}`, (error, data) => {
-  //     error
-  //       ? console.log(`Se ha producido el siguiente error: ${error}`)
-  //       : console.log(
-  //           JSON.parse(data).map(
-  //             (value) => `
-  //       id:${value.id},
-  //       title:${value.title},
-  //       price:${value.price}, `
-  //           )
-  //         );
-  //   });
-  // };
+    return findID;
+  };
 
-  // deleteById = (number) => {
-  //   //Elimina del archivo el objeto con el ID buscado
+  getAll = async () => {
+    //Devuelve un array con los objetos presentes en el archivo
+    let data = await fs.promises.readFile(this.filename, "utf-8");
+    // console.log(data, "data")
+    let arrData = JSON.parse(data);
+    console.log(arrData, "arrData")
+    return arrData;
+  };
 
-  //   let route = `${this.filename}`;
-  //   let rawdata = fs.readFile(route, "utf-8", (error) =>
-  //     console.log(`Se ha producido un error en RAWDATA: ${error}`)
-  //   );
-  //   let dataCollection = JSON.parse(rawdata);
-  // };
+  deleteById = async (numberID) => {
+    //Elimina del archivo el objeto con el ID buscado
 
-  //   deleteAll=()=>{
-  //     //Elimina todos los objetos presentes en el archivo
-  //   }
+    let data = await fs.promises.readFile(this.filename, "utf-8");
+    // console.log(data, "data")
+    let arrData = JSON.parse(data);
+    // console.log(arrData, "arrData")
+
+    try {
+      let findID = arrData.filter(({ id }) => id != numberID);
+      await fs.promises.writeFile(
+        this.filename,
+        JSON.stringify(findID, null, 2)
+      );
+    } catch (err) {
+      console.log(`No se ha podido guardar el objeto: ${err}`);
+    }
+  };
+
+  deleteAll = () => {
+    //Elimina todos los objetos presentes en el archivo
+    fs.promises.writeFile(this.filename, "");
+  };
 }
 
 const file = new Contenedor("./products.json");
 
-file.save({
-  title: "Vino",
-  price: "300",
-  thumbnail:
-    "https://th.bing.com/th/id/OIP.im0JpPU66JTk_Tv4v6uASQHaE7?pid=ImgDet&rs=1",
-  // title: "jugo natural",
-  // price: "200",
-  // thumbnail:
-  //   "https://th.bing.com/th/id/R.5a9c261f9e3737fa248429c4aa93c5d3?rik=475xNgV2Jg0MQg&riu=http%3a%2f%2fpirapolitica.com%2fwp-content%2fuploads%2f2019%2f10%2fel-jugo-de-naranja.jpg&ehk=7W1hS%2fYlYo8qlYNukWgHh%2biPmyQwUcnGu0uXsLhYoe8%3d&risl=&pid=ImgRaw&r=0",
-});
+const saveFunction = async () => {
+  await file.save({
+    title: "Vino",
+    price: "300",
+    thumbnail: "foto-vino",
+  });
 
-// file.getAll();
+  await file.save({
+    title: "jugo natural",
+    price: "200",
+    thumbnail: "foto-jugo",
+  });
 
-// file.deleteById(1);
+  await file.save({
+    title: "Cerveza",
+    price: "350",
+    thumbnail: "foto-cerveza",
+  });
+
+  await file.save({
+    title: "Agua mineral",
+    price: "150",
+    thumbnail: "foto-awita",
+  });
+
+  // await file.getById(6);
+
+  // await file.getAll();
+
+  // await file.deleteById(4);
+
+  // await file.deleteAll(); /* DESCOMENTAR PARA HACER QUE FUNCIONE */
+};
+
+saveFunction();

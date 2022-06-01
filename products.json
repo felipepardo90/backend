@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Vino",
+    "price": "300",
+    "thumbnail": "foto-vino",
+    "id": 1
+  },
+  {
+    "title": "jugo natural",
+    "price": "200",
+    "thumbnail": "foto-jugo",
+    "id": 2
+  },
+  {
+    "title": "Cerveza",
+    "price": "350",
+    "thumbnail": "foto-cerveza",
+    "id": 3
+  },
+  {
+    "title": "Agua mineral",
+    "price": "150",
+    "thumbnail": "foto-awita",
+    "id": 4
+  }
+]
