@@ -121,15 +121,53 @@
 
 // saveFunction();
 
+// const http = require('http')
 
-const http = require ('http')
-const server = http.createServer((peticion, respuesta)=>{
-  // let now = moment()
-  // console.log(now.format('HH:mm:ss'))
-  respuesta.end('Hola Fuckers')
-})
+// const server = http.createServer((req, res)=>{
+//  const time = new Date()
+//  const hour = time.getHours()
 
-const connectedServer = server.listen(8080, ()=>{
-  console.log(`Servidor HTTP conectado, escuchando en el puerto ${connectedServer.address().port}`)
+//  if(hour>=6 && hour <= 12){
+//    res.end('Buenos días')
+//  }else if (hour >=13 && hour <= 19){
+//   res.end('Buenas tardes')
+//  }else{
+//    res.end('Buenas noches')
+//  }
+// })
 
-})
+// const connectedServer = server.listen(8080, ()=>{
+//   console.log(`Servidor HTTP conectado, escuchando en el puerto ${connectedServer.address().port}`)
+
+// })
+
+const express = require("express");
+const app = express();
+
+const server = app.listen(8080, () => {
+  console.log(
+    `Servidor HTTP conectado, escuchando en el puerto ${server.address().port}`
+  );
+});
+
+server.on("error", (error) => console.log(`Error en servidor: ${error}`));
+
+app.get("/", (req, res) => {
+  res.send('<h1 style="color:blue">Bienvenidos al servidor express</h1>');
+});
+
+let visitas = 0;
+app.get("/visitas", (req, res) => {
+  visitas++;
+  res.send(`la cantidad de visitas es ${visitas}`);
+});
+
+app.get("/fyh", (req, res) => {
+  const date = new Date();
+  const fecha = time.getDate();
+  const hora = time.getHours();
+  const mes = time.getMonth();
+  const year = time.getFullYear();
+
+  res.send(`Son las ${hora}hs, del día ${fecha}/${mes}/${year}`);
+});
