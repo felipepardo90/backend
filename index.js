@@ -141,33 +141,37 @@
 
 // })
 
-const express = require("express");
-const app = express();
+// const express = require("express");
+// const app = express();
 
-const server = app.listen(8080, () => {
-  console.log(
-    `Servidor HTTP conectado, escuchando en el puerto ${server.address().port}`
-  );
-});
+// const server = app.listen(8080, () => {
+//   console.log(
+//     `Servidor HTTP conectado, escuchando en el puerto ${server.address().port}`
+//   );
+// });
 
-server.on("error", (error) => console.log(`Error en servidor: ${error}`));
+// server.on("error", (error) => console.log(`Error en servidor: ${error}`));
 
-app.get("/", (req, res) => {
-  res.send('<h1 style="color:blue">Bienvenidos al servidor express</h1>');
-});
+// app.get("/", (req, res) => {
+//   res.send('<h1 style="color:blue">Bienvenidos al servidor express</h1>');
+// });
 
-let visitas = 0;
-app.get("/visitas", (req, res) => {
-  visitas++;
-  res.send(`la cantidad de visitas es ${visitas}`);
-});
+// let visitas = 0;
+// app.get("/visitas", (req, res) => {
+//   visitas++;
+//   res.send(`la cantidad de visitas es ${visitas}`);
+// });
 
-app.get("/fyh", (req, res) => {
-  const date = new Date();
-  const fecha = time.getDate();
-  const hora = time.getHours();
-  const mes = time.getMonth();
-  const year = time.getFullYear();
+// app.get("/fyh", (req, res) => {
+//   const date = new Date();
 
-  res.send(`Son las ${hora}hs, del día ${fecha}/${mes}/${year}`);
-});
+//   res.json({fyh:date});
+// });
+
+function multiply(a, b){
+  a*b
+}
+
+multiply(2,3)
+
+
