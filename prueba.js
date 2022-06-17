@@ -1,11 +1,11 @@
-var a=1
-function prueba(){
-    if (4<=a){
-        return console.log("aprobado", "3")
-    }else{
-        return console.log("desaprobado", "5")
-    }
-}
+function incrementarPorUno(array, cb) {
+    // "array" debe ser una matriz de enteros (int/integers)
+    // Aumenta cada entero por 1
+    // y devuelve el array
+    // Tu código:
+   let array2 = array.map(cb=>{cb})
+  
+   return array2
+  }
 
-
-prueba()
+  console.log(incrementarPorUno([1, 2, 3]))
