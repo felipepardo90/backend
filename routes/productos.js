@@ -11,11 +11,11 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  let data = products.find(item=>item.id == id)
-  if (!data){
-    res.json({error:"producto no encontrado"})
+  let data = products.find((item) => item.id == id);
+  if (!data) {
+    res.json({ error: "producto no encontrado" });
   }
-  res.json(data)
+  res.json(data);
 });
 
 router.post("/", (req, res) => {
@@ -36,30 +36,24 @@ router.post("/", (req, res) => {
   res.status(500).send("Producto cargado exitosamente");
 });
 
-router.put("/:id",  (req, res) => {
+router.put("/:id", (req, res) => {
   const { id } = req.params;
-  const updatedProduct = products.find(item=>item.id == id)
-  console.log(updatedProduct)
   const { title, price, thumbnail } = req.body;
-  if (title && price && thumbnail) {
-    try {
-      updatedProduct = { ...req.body};
-      products.push(updatedProduct);
-      res.json("Saved");
-      return products.id;
-    } catch (err) {
-      console.log(`No se ha podido guardar el objeto put: ${err}`);
-    }
-  } 
-  res.status(500).send("Producto actualizado exitosamente");
- 
+  const data = products.find((item) => item.id == id);
+
+  if (!data) {
+    res.json({ error: "producto no encontrado" });
+  }
+
+  data = { title, price, thumbnail };
+  res.json(data);
 });
 
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
-  let data = products.filter(item => item.id != id);
-  if (!data){
-    res.json({error:"producto no encontrado"})
+  let data = products.filter((item) => item.id != id);
+  if (!data) {
+    res.json({ error: "producto no encontrado" });
   }
   res.json(data).send("Producto eliminado");
 });
