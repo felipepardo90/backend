@@ -37,16 +37,25 @@ router.post("/", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
+  // const { id } = req.params;
+  // const { title, price, thumbnail } = req.body;
+  // const data = products.find((item) => item.id == id);
+
+  // if (!data) {
+  //   res.json({ error: "producto no encontrado" });
+  // }
+
+  // data = { title, price, thumbnail };
+  // res.json(data);
   const { id } = req.params;
-  const { title, price, thumbnail } = req.body;
-  const data = products.find((item) => item.id == id);
+  let data = products.findIndex((item) => item.id == id);
+  if (data != -1) {
+    req.body.id = id;
+    products[data] = req.body;
 
-  if (!data) {
-    res.json({ error: "producto no encontrado" });
+    res.json(products[data]);
   }
-
-  data = { title, price, thumbnail };
-  res.json(data);
+  res.json({ error: "producto no encontrado" });
 });
 
 router.delete("/:id", (req, res) => {
