@@ -1,50 +1,70 @@
-// const products = require("../products.json");
-
 class Contenedor {
   constructor() {
     this.products = require("../products.json");
   }
 
-  save = async (object) => {
-    // Recibe un objeto, lo guarda en el archivo, devuelve el ID asignado
+  save = (object) => {
+    // recibe un objeto, le asigna un ID y lo guarda en el archivo
 
-    try {
-      const id = products.length + 1;
-      const newProduct = { ...req.body, id };
-      products.push(newProduct);
-      res.json("Saved");
-      return object.id;
-    } catch (err) {
-      console.log(`No se ha podido guardar el objeto: ${err}`);
+    if (object.title && object.price && object.thumbnail) {
+      try {
+        object.id = this.products.length + 1;
+        this.products.push(object);
+        return object;
+      } catch (err) {
+        console.log(`Error en save: ${err}`);
+      }
+    }
+  };
+
+  update = (object, clientId) => {
+    // actualiza un objecto según el ID
+
+    let data = this.products.findIndex(({ id }) => id == clientId);
+    if (data != -1) {
+      try {
+        object.id = clientId;
+        this.products[data] = object;
+
+        return object;
+      } catch (error) {
+        console.log(`Error en update: ${err}`);
+      }
     }
   };
 
   getById = (clientId) => {
-    let data = this.products.find(({ id }) => id == clientId);
-    try {
-      data == undefined && null;
-    } catch (error) {
-      console.log(`Error en el procesamiento de búsqueda: ${error}`);
-    }
+    // obtiene el producto con el ID proporcionado por el cliente
 
-    return data;
+    let data = this.products.find(({ id }) => id == clientId);
+    if (data) {
+      try {
+        return data;
+      } catch (error) {
+        console.log(`Error en getById: ${error}`);
+      }
+    }
   };
 
   getAll = () => {
-    // Devuelve un array con los objetos presentes en el archivo
+    // devuelve un array con los objetos presentes en el archivo
 
-    return this.products;
+    try {
+      return this.products;
+    } catch (error) {
+      console.log(`Error en getAll: ${error}`);
+    }
   };
 
   deleteById = (clientId) => {
-    //Elimina del archivo el objeto con el ID buscado
-
-    try {
-      let data = this.products.filter(({ id }) => id != clientId);
-      return data;
-    } catch (err) {
-      console.log(`No se ha podido borrar el objeto: ${err}`);
-    }
+    // elimina del archivo el objeto con el ID buscado
+      try {
+        let data = this.products.filter(({ id }) => id != clientId);
+        return data;
+      } catch (err) {
+        console.log(`Error en deleteById: ${err}`);
+      }
+    
   };
 }
 
@@ -52,4 +72,4 @@ module.exports = Contenedor;
 
 const container = new Contenedor();
 
-console.log(container.deleteById(3));
+console.log(container.deleteById(8));
