@@ -19,8 +19,8 @@ class Contenedor {
     }
   };
 
-  getById = (numberID) => {
-    let data = this.products.find(({ id }) => id == numberID);
+  getById = (clientId) => {
+    let data = this.products.find(({ id }) => id == clientId);
     try {
       data == undefined && null;
     } catch (error) {
@@ -36,12 +36,12 @@ class Contenedor {
     return this.products;
   };
 
-  deleteById = (numberID) => {
+  deleteById = (clientId) => {
     //Elimina del archivo el objeto con el ID buscado
 
     try {
-      let data = this.products.filter(({ id }) => id != numberID);
-      return data
+      let data = this.products.filter(({ id }) => id != clientId);
+      return data;
     } catch (err) {
       console.log(`No se ha podido borrar el objeto: ${err}`);
     }
@@ -52,4 +52,4 @@ module.exports = Contenedor;
 
 const container = new Contenedor();
 
-console.log(container.deleteById(3))
+console.log(container.deleteById(3));
