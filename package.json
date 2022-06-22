@@ -1,11 +1,14 @@
 {
   "dependencies": {
+    "ejs": "^3.1.8",
     "express": "^4.18.1",
     "moment": "^2.29.3",
-    "pug": "^3.0.2"
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2",
+    "socket.io": "^4.5.1"
   },
   "scripts": {
-    "start": "nodemon ./server.js"
+    "start": "nodemon ./src/server.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
