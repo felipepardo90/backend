@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-const productosRoute = require("./routes/productos");
-const indexRoute = require("./routes/index");
+const indexApiRest = require("./routes/indexApiRest");
+const indexApi = require("./routes/indexApi");
 const path = require("path");
 const morgan = require("morgan");
 const { engine } = require("express-handlebars");
@@ -33,8 +33,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // routes
-app.use("/", indexRoute);
-app.use("/productos", productosRoute);
+app.use("/", indexApi);
+app.use("/api/productos", indexApiRest);
 
 // statics
 app.use(express.static(path.join(__dirname, "./public")));
