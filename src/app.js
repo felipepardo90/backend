@@ -22,9 +22,9 @@ app.engine(
 app.set("port", 8080);
 app.set("json spaces", 2);
 app.set("views", path.join(__dirname, "views"));
-// app.set("view engine", "ejs");// ejs
+app.set("view engine", "ejs");// ejs
 // app.set("view engine", "pug");// pug
-app.set("view engine", "hbs"); // hbs
+// app.set("view engine", "hbs"); // hbs
 
 
 // middleware
