@@ -32,13 +32,13 @@ body {
           box-sizing: border-box;
 }
 
-form .txt_field {
+.main__form form .txt_field {
   position: relative;
   border-bottom: 2px solid silver;
   margin: 30px 0;
 }
 
-.txt_field input {
+.main__form form .txt_field input {
   width: 100%;
   padding: 0 5px;
   height: 40px;
@@ -48,7 +48,7 @@ form .txt_field {
   outline: none;
 }
 
-.txt_field label {
+.main__form form .txt_field label {
   position: absolute;
   top: 50%;
   left: 5px;
@@ -61,7 +61,7 @@ form .txt_field {
   transition: 0.5s;
 }
 
-.txt_field span::before {
+.main__form form .txt_field span::before {
   content: "";
   position: absolute;
   top: 40px;
@@ -116,5 +116,70 @@ input[type="submit"]:hover {
 
 .view__product a:hover {
   text-decoration: underline;
+}
+
+.product__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background-color: darkcyan;
+}
+
+.box {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 300px;
+          flex: 1 1 300px;
+  background-color: white;
+  border: 1px solid black;
+  position: relative;
+  overflow: hidden;
+  margin: 20px;
+}
+
+.box .image {
+  padding: 10px;
+  background-color: lightgray;
+  text-align: center;
+}
+
+.box .image img {
+  height: 200px;
+  width: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-filter: drop-shadow(0 3px 5px black);
+          filter: drop-shadow(0 3px 5px black);
+}
+
+.box .info .title {
+  padding: 10px;
+  color: lightgray;
+  font-size: 20px;
+}
+
+.box .info .sub__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 15px 10px;
+}
+
+.box .info .sub__info .price {
+  color: orangered;
+  font-size: 20px;
 }
 /*# sourceMappingURL=index.css.map */
