@@ -8,11 +8,8 @@ const file = new Contenedor();
 // get all products
 
 router.get("/", (req, res) => {
-  let data = file.getAll();
-  if (!data) {
-    res.json({ error: "no hay productos" });
-  }
-  res.json(data);
+  let products = file.getAll();
+  res.render("products", {products})
 });
 
 // get product by id
@@ -33,28 +30,28 @@ router.post("/", (req, res) => {
   if (!data) {
     res.status(400).send("Complete los campos restantes");
   }
-  res.status(200).send(`Producto ${data.id} cargado exitosamente`);
+  res.status(200)
 });
 
 // put
 
-router.put("/:id", (req, res) => {
-  let data = file.update(req.body, req.params.id);
-  if (!data) {
-    res.status(200).json(data);
-  } else {
-    res.status(304).json({ error: "producto no encontrado" });
-  }
-});
+// router.put("/:id", (req, res) => {
+//   let data = file.update(req.body, req.params.id);
+//   if (!data) {
+//     res.status(200).json(data);
+//   } else {
+//     res.status(304).json({ error: "producto no encontrado" });
+//   }
+// });
 
 // delete
 
-router.delete("/:id", (req, res) => {
-  let data = file.deleteById(req.params.id);
-  if (!data) {
-    res.status(304).json({ error: "producto no encontrado" });
-  } 
-  res.json(data)
-});
+// router.delete("/:id", (req, res) => {
+//   let data = file.deleteById(req.params.id);
+//   if (!data) {
+//     res.status(304).json({ error: "producto no encontrado" });
+//   } 
+//   res.json(data)
+// });
 
 module.exports = router;

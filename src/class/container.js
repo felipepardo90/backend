@@ -70,6 +70,6 @@ class Contenedor {
 
 module.exports = Contenedor;
 
-const container = new Contenedor();
+// const container = new Contenedor();
 
-console.log(container.deleteById(8));
+// console.log(container.deleteById(8));
