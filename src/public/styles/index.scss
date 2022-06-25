@@ -1,9 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 body {
   margin: 0;
   padding: 0;
-  font-family: "Supermercado One", cursive;
+  font-family: 'Quicksand', sans-serif;
   background: linear-gradient(120deg, gray, white);
   height: 100vh;
 }
@@ -113,12 +112,17 @@ input[type="submit"] {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  background-color: darkcyan;
+  background-color: white;
+}
+
+section h2{
+  text-align: center;
+  font-size: 60px;
 }
 
 .box {
   flex: 1 1 300px;
-  background-color: white;
+  background-color: orangered;
   border: 1px solid black;
   position: relative;
   overflow: hidden;
@@ -137,16 +141,17 @@ input[type="submit"] {
   .info {
     .title {
       padding: 10px;
-      color: lightgray;
-      font-size: 20px;
+      color: white;
+      font-size: 30px;
     }
     .sub__info {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 15px 10px;
+      border-top: 1px solid silver;
       .price {
-        color: orangered;
+        color: black;
         font-size: 20px;
       }
     }
