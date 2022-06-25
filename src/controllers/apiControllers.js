@@ -12,7 +12,7 @@ const productsView = (req, res) => {
 
 const formSubmit = (req, res) => {
   data.save(req.body);
-  res.redirect("/");
+  res.redirect("/productos");
 };
 
 module.exports = { formView, productsView, formSubmit };
