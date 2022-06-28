@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 class Contenedor {
   constructor() {
     this.products = require("../products.json");
@@ -10,6 +12,8 @@ class Contenedor {
       try {
         object.id = this.products.length + 1;
         this.products.push(object);
+        const json_products= JSON.stringify(this.products)
+        fs.writeFileSync('src/products.json', json_products, "utf-8")
         return object;
       } catch (err) {
         console.log(`Error en save: ${err}`);

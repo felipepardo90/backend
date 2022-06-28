@@ -22,5 +22,17 @@
     "price": "150",
     "thumbnail": "https://www.hhg5.com/wp-content/uploads/2016/07/Qual-a-quantidade-de-%C3%A1gua-ideal-que-devo-beber1.jpg",
     "id": 4
+  },
+  {
+    "title": "Ron",
+    "price": "700",
+    "thumbnail": "https://th.bing.com/th/id/R.df4a75772c8f1ab1f1c43d35788d9795?rik=5mLDSuRGcOvlcQ&pid=ImgRaw&r=0",
+    "id": 5
+  },
+  {
+    "title": "Vino blanco",
+    "price": "550",
+    "thumbnail": "https://www.journalvignette.fr/wp-content/uploads/2018/05/cepage-chardonnay-journal-vignette-actualite-du-vin-696x704.jpg",
+    "id": 6
   }
 ]
