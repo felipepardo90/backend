@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "@babel/cli": "^7.18.6",
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "babel-preset-es2015": "^6.24.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
@@ -7,6 +11,7 @@
     "socket.io": "^4.5.1"
   },
   "scripts": {
+    "build": "babel ./origen.js -o ./destino.js -w",
     "start": "nodemon ./src/server.js"
   },
   "devDependencies": {
