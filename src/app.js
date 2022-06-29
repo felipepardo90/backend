@@ -18,7 +18,7 @@ app.engine(
 );
 
 // settings
-app.set("port", 8080);
+app.set("port", process.env.PORT || 8080);
 app.set("json spaces", 2);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs"); // ejs
@@ -34,7 +34,7 @@ app.use("/", indexApi);
 app.use("/api/productos", indexApiRest);
 
 // static
-app.use(express.static(path.join(__dirname, "./public")));
+app.use(express.static(path.join(__dirname, "../public")));
 
 // 404 handler
 app.use((req, res, next) => {
