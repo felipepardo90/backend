@@ -1,4 +1,4 @@
-const Contenedor = require("../class/container");
+const Contenedor = require("../api/container");
 const data = new Contenedor();
 
 const formView = (req, res) => {

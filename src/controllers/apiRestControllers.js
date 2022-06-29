@@ -1,4 +1,4 @@
-const Contenedor = require("../class/container");
+const Contenedor = require("../api/container");
 const file = new Contenedor();
 
 const getAll = (req, res) => {
