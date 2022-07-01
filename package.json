@@ -7,13 +7,15 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
-    "socket.io": "^4.5.1"
+    "socket.io": "^4.5.1",
+    "webpack-cli": "^4.10.0"
   },
   "scripts": {
-    "build": "babel ./origen.js -o ./destino.js -w",
+    "build": "webpack ./archivo2.js --mode=production && npm start",
     "start": "nodemon ./src/server.js"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "webpack": "^5.73.0"
   }
 }
