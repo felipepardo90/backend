@@ -32,5 +32,4 @@ io.on("connection", (socket) => {
   // sending products
 
   io.sockets.emit("server:productos", productos);
-
 });
