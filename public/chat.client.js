@@ -39,34 +39,34 @@ socket.on("chat:typing", (data) => {
   actions.innerHTML = `<p><em>${data} está escribiendo...</em></p>`;
 });
 
-
 // TEMPLATE
 
-// async function renderProducts(productos) {
-//   const response = await fetch('./hbs/productList.hbs');
-//   const plantilla = await response.text();
+const formContainer = document.querySelector("#form-products");
+const productInput = document.querySelector("#product-input");
+const priceInput = document.querySelector("#price-input");
+const thumbnailInput = document.querySelector("#thumbnail-input");
 
-//   document.querySelector('#productPool').innerHTML = "";
-//   productos.forEach(producto => {
-//       const template = Handlebars.compile(plantilla);
-//       const html = template(producto);
-//       document.querySelector('#productPool').innerHTML += html;
-//   })
-// } 
+function submitHandlerProduct(e) {
+  e.preventDefault();
+
+  const title = productInput.value;
+  const price = priceInput.value;
+  const thumbnail = thumbnailInput.value;
+
+  socket.emit("cliente:producto", { title, price, thumbnail });
+}
 
 async function renderProducts(productos) {
   /* CON HANDLEBARS: */
-  const response = await fetch('./main.hbs')
-  const plantilla = await response.text()
+  const response = await fetch("./main.hbs");
+  const plantilla = await response.text();
 
-  productos.forEach(producto => {
-
-      const template = Handlebars.compile(plantilla)
-      const html = template(producto)
-      document.querySelector('#products-output').innerHTML += html
-  })
+  productos.forEach((producto) => {
+    const template = Handlebars.compile(plantilla);
+    const html = template(producto);
+    document.querySelector("#products-output").innerHTML += html;
+  });
 }
 
-socket.on('server:productos', productos => {
-  renderProducts(productos)
-})
+formContainer.addEventListener("submit", submitHandlerProduct);
+socket.on("server:productos", renderProducts);

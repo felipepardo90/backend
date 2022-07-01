@@ -1,5 +1,7 @@
 const app = require("./app");
 const productos = require("./products.json");
+const Contenedor = require("./api/container");
+const data = new Contenedor();
 // starting server
 
 const expressServer = app.listen(app.get("port"));
@@ -30,6 +32,11 @@ io.on("connection", (socket) => {
   });
 
   // sending products
+
+  socket.on("cliente:producto", async (formData) => {
+    await data.save(formData);
+    productos = await data.getAll();
+  });
 
   io.sockets.emit("server:productos", productos);
 });
