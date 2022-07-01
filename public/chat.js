@@ -6,23 +6,31 @@ let btn = document.getElementById("send");
 let output = document.getElementById("output");
 let actions = document.getElementById("actions");
 
-//DATE
+// HBS Template
 
-let date = new Date();
+async function renderProducts(productos) {
+  const response = await fetch("./main.hbs");
+  const plantilla = await response.text();
 
-let day = date.getDate();
-let month = date.getMonth() + 1;
-let year = date.getFullYear();
+  productos.forEach(producto => {
+    const template = Handlebars.compile(plantilla)
+    const html = template(producto)
+    document.querySelector('#productos').innerHTML += html
+})
 
-let hour = date.getHours();
-let minutes = date.getMinutes();
-let seconds = date.getSeconds();
+  // const template = Handlebars.compile(plantilla);
+  // const html = template(productos);
+  // document.querySelector("#productos").innerHTML += html;
+}
 
-// formato requerido
-let now = `${day}/${month}/${year}, ${hour}:${minutes}:${seconds}`;
-console.log(now);
+// function renderProducts(productos) {
+//   console.log(productos, "render")
+//   document.getElementById("product__container").innerHTML += `
+//   <tbody><td>${productos.title}</td><td>${productos.price}</td><td>${productos.thumbnail}</td>
+//   `;
+// }
 
-//
+// eventos
 
 btn.addEventListener("click", () => {
   socket.emit("chat:message", {
@@ -35,48 +43,28 @@ chatMessage.addEventListener("keypress", () => {
   socket.emit("chat:typing", username.value);
 });
 
+// mensajes
+
 socket.on("chat:message", (data) => {
   actions.innerHTML = "";
   output.innerHTML += `
 <p>
-<strong style="color:blue">${data.username}</strong>, <span style="color:brown; font-size:12px">${now}</span>: <i style="color:green">${data.message}</i>
+<strong style="color:blue">${
+    data.username
+  }</strong> (<span style="color:brown; font-size:10px">${new Date().toLocaleString()}</span>): <i style="color:green">${
+    data.message
+  }</i>
 </p>`;
 });
+
+// evento typing en el chat
 
 socket.on("chat:typing", (data) => {
   actions.innerHTML = `<p><em>${data} está escribiendo...</em></p>`;
 });
 
-// const messageForm = document.querySelector("#messageForm");
-// const usernameInput = document.querySelector("#usernameInput");
-// const messageInput = document.querySelector("#messageInput");
-// const messagesPool = document.querySelector("#messagesPool");
+// obtener productos
 
-// function sendMessage(messageInfo) {
-//   socket.emit("client:message", messageInfo);
-// }
-
-// function renderMessages(messagesInfo) {
-//   const html = messagesInfo
-//     .map((elem) => {
-//       return `<div>
-//         <strong>${elem.username}</strong>:
-//         <em>${elem.message}</em>
-//         </div>`;
-//     })
-//     .join(" ");
-
-//   messagesPool.innerHTML = html;
-// }
-
-// function submitHandler(event) {
-//   event.preventDefault();
-//   const messageInfo = {
-//     username: usernameInput.value,
-//     message: messageInput.value,
-//   };
-//   sendMessage(messageInfo)
-// }
-// messageForm.addEventListener("submit", submitHandler);
-
-// socket.on("server:mensajes", renderMessages);
+socket.on("server:productos", (productos) => {
+  renderProducts(productos);
+});

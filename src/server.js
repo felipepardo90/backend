@@ -1,5 +1,5 @@
 const app = require("./app");
-
+const productos = require("./products.json");
 // starting server
 
 const expressServer = app.listen(app.get("port"));
@@ -14,7 +14,8 @@ const io = new IOServer(expressServer);
 
 io.on("connection", (socket) => {
   console.log(`User ${socket.id} connected`);
-  // socket.emit("server:mensajes", messagesArray)
+
+  // chat message event
 
   socket.on("chat:message", (data) => {
     io.sockets.emit("chat:message", data);
@@ -22,7 +23,14 @@ io.on("connection", (socket) => {
     // io.emit("server:mensajes", messagesArray);
   });
 
+  // chat typing event
+
   socket.on("chat:typing", (data) => {
     socket.broadcast.emit("chat:typing", data);
   });
+
+  // sending products
+
+  io.sockets.emit("server:productos", productos);
+
 });
