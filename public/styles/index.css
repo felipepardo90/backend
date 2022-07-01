@@ -8,60 +8,6 @@ body {
   height: 100vh;
 }
 
-navbar {
-  width: 85%;
-  margin: auto;
-  padding: 35px 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-navbar .logo {
-  color: lightskyblue;
-  width: 120px;
-  cursor: pointer;
-}
-
-navbar ul li {
-  list-style: none;
-  display: inline-block;
-  margin: 0 20px;
-  position: relative;
-}
-
-navbar ul li a {
-  text-decoration: none;
-  color: white;
-  text-transform: uppercase;
-}
-
-navbar ul li::after {
-  content: "";
-  height: 3px;
-  width: 0;
-  background: #009688;
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-}
-
-navbar ul li:hover::after {
-  width: 100%;
-}
-
-section {
-  margin-top: 20px;
-}
-
 #chat-container {
   max-width: 600px;
   margin: 30px auto;
@@ -191,14 +137,14 @@ button {
   }
 }
 
-#productos {
+#products-output {
   overflow-x: auto;
   max-width: 1000px;
   margin: auto;
   height: 200px;
 }
 
-#productos h2 {
+#products-output h2 {
   text-align: center;
 }
 

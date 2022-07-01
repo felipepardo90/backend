@@ -7,50 +7,6 @@ body {
   height: 100vh;
 }
 
-// NAVBAR
-
-navbar {
-  width: 85%;
-  margin: auto;
-  padding: 35px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  .logo {
-    color: lightskyblue;
-    width: 120px;
-    cursor: pointer;
-  }
-  ul li {
-    list-style: none;
-    display: inline-block;
-    margin: 0 20px;
-    position: relative;
-    a {
-      text-decoration: none;
-      color: white;
-      text-transform: uppercase;
-    }
-    &::after {
-      content: "";
-      height: 3px;
-      width: 0;
-      background: #009688;
-      position: absolute;
-      left: 0;
-      bottom: -10px;
-      transition: 0.5s;
-    }
-    &:hover::after {
-      width: 100%;
-    }
-  }
-}
-
-section{
-  margin-top: 20px
-}
-
 
 
 @import "_chatFrontend.scss";
