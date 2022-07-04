@@ -8,7 +8,8 @@ let actions = document.getElementById("actions");
 
 // eventos
 
-btn.addEventListener("click", () => {
+btn.addEventListener("click", (e) => {
+  e.preventDefault()
   socket.emit("chat:message", {
     message: chatMessage.value,
     username: username.value,
