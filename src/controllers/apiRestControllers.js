@@ -2,8 +2,8 @@ const Contenedor = require("../api/container");
 const file = new Contenedor();
 
 const getAll = (req, res) => {
-  let data = file.getAll();
-  res.json(data);
+  let products = file.getAll();
+  res.render("products", { products });
 };
 
 const getProductById = (req, res) => {
