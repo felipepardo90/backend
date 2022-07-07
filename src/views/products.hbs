@@ -1,9 +1,11 @@
+{{>navbar}}
+
 <section>
     <h2>PRODUCTOS</h2>
-    {{#if productos}}
+    {{#if products}}
 
     <div class="product__container">
-    {{#each productos}}
+    {{#each products}}
     <div class="box">
         <div class="image">
             <img src={{this.thumbnail}} alt="product">
