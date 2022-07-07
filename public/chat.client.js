@@ -47,14 +47,18 @@ const productInput = document.querySelector("#product-input");
 const priceInput = document.querySelector("#price-input");
 const thumbnailInput = document.querySelector("#thumbnail-input");
 
+function sendProduct(productInfo){
+  socket.emit("cliente:producto", productInfo);
+}
+
 function submitHandlerProduct(e) {
   e.preventDefault();
 
-  const title = productInput.value;
-  const price = priceInput.value;
-  const thumbnail = thumbnailInput.value;
+  const productInfo ={title : productInput.value, price : priceInput.value,thumbnail : thumbnailInput.value}
 
-  socket.emit("cliente:producto", { title, price, thumbnail });
+  sendProduct(productInfo)
+
+  
 }
 
 async function renderProducts(productos) {
