@@ -3,7 +3,7 @@ const file = new Contenedor();
 
 const getAll = (req, res) => {
   let products = file.getAll();
-  res.render("products", { products });
+  res.json(products);
 };
 
 const getProductById = (req, res) => {
@@ -16,12 +16,18 @@ const getProductById = (req, res) => {
 
 const postProduct = (req, res) => {
   let data = file.save(req.body);
+  if (!data){
+    res.json({error: "se deben completar todos los campos"})
+  }
   res.json(data);
 };
 
 const putProduct = (req, res) => {
   let data = file.update(req.body, req.params.id);
-  res.json(data);
+  if (!data){
+    res.json({error: "se deben completar todos los campos"})
+  }
+  res.json({message:`el producto ${req.params.id} se ha modificado exitosamente`});
 };
 
 const deleteProduct = (req, res) => {
@@ -29,7 +35,7 @@ const deleteProduct = (req, res) => {
   if (!data) {
     res.json({ error: "producto no encontrado" });
   }
-  res.json(data);
+  res.json({message:`producto ${req.params.id} eliminado`});
 };
 
 module.exports = {
