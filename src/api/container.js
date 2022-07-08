@@ -64,6 +64,9 @@ class Contenedor {
     // elimina del archivo el objeto con el ID buscado
       try {
         let data = this.products.filter(({ id }) => id != clientId);
+        console.log(data)
+        let json_products= JSON.stringify(data)
+        fs.writeFileSync('src/products.json', json_products, "utf-8")
         return data;
       } catch (err) {
         console.log(`Error en deleteById: ${err}`);

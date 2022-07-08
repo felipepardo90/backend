@@ -1,11 +1,11 @@
 const { Router } = require("express");
-const {  } = require("../controllers/apiCartController");
+const { newCart } = require("../controllers/apiCartController");
 const router = Router(); 
 
-// router.get("/", getAll);
-// router.post("/", getAll);
-// router.post("/", getAll);
-// router.delete("/", getAll);
-// router.delete("/", getAll);
+router.get("/", newCart);
+// router.delete("/:id/productos", deleteCartById);
+// router.get("/:id/productos", getAllProductsInCart);
+// router.post("/:id/productos", addProductsToCart);
+// router.delete("/:id/productos/:id_prod", deleteProductFromCartById);
 
 module.exports = router;
