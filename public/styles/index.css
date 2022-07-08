@@ -208,6 +208,17 @@ section h2 {
   font-size: 20px;
 }
 
+.form__section {
+  height: 800px;
+  text-align: center;
+  position: relative;
+}
+
+.form__section .form__title {
+  font-size: 60px;
+  text-shadow: 2px 2px 10px white;
+}
+
 .main__form {
   position: absolute;
   top: 50%;
