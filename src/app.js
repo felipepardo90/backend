@@ -3,6 +3,7 @@ const app = express();
 const indexApiRest = require("./routes/indexApiRest");
 const indexApi = require("./routes/indexApi");
 const indexApiCart = require("./routes/indexApiCart")
+const adminRoutes = require("./routes/adminRoutes")
 const path = require("path");
 const { engine } = require("express-handlebars");
 
@@ -30,8 +31,9 @@ app.use(express.json());
 
 // routes
 app.use("/", indexApi);
-app.use("/api/productos", indexApiRest);
 app.use("/api/carrito", indexApiCart);
+app.use("/api/productos", indexApiRest);
+app.use("/admin", adminRoutes);
 
 // static
 app.use(express.static(path.join(__dirname, "../public")));
