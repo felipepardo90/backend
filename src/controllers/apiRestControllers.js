@@ -24,8 +24,8 @@ const postProduct = (req, res) => {
 
 const putProduct = (req, res) => {
   let data = file.update(req.body, req.params.id);
-  if (!data){
-    res.json({error: "se deben completar todos los campos"})
+  if (data == null){
+    res.json({error: `No se ha encontrado un producto con id ${req.params.id}`})
   }
   res.json({message:`el producto ${req.params.id} se ha modificado exitosamente`});
 };
