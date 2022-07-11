@@ -1,32 +1,19 @@
 const { Router } = require("express");
-const {
-  getAll,
-  getProductById,
-  postProduct,
-  putProduct,
-  deleteProduct,
-} = require("../controllers/apiRestControllers");
-
-const {
-  newCart,
-//   deleteCartById,
-//   getAllProductsInCart,
-//   addProductsToCart,
-//   deleteProductFromCartById,
-} = require("../controllers/apiCartController");
+const adminControllers = require("../controllers/apiRestControllers");
+const adminCartControllers = require("../controllers/apiCartController");
 const router = Router();
 
 // PRODUCTOS
 
-router.get("/api/productos", getAll);
-router.get("/api/productos/:id", getProductById);
-router.post("/api/productos", postProduct);
-router.put("/api/productos/:id", putProduct);
-router.delete("/api/productos/:id", deleteProduct);
+router.get("/api/productos", adminControllers.getAll);
+router.get("/api/productos/:id", adminControllers.getProductById);
+router.post("/api/productos", adminControllers.postProduct);
+router.put("/api/productos/:id", adminControllers.putProduct);
+router.delete("/api/productos/:id", adminControllers.deleteProduct);
 
 // CARRITO
 
-router.post("/api/carrito", newCart);
+router.post("/api/carrito", adminCartControllers.newCart);
 // router.delete("/api/carrito/:id", deleteCartById);
 // router.get("/api/carrito/:id/productos", getAllProductsInCart);
 // router.post("/api/carrito/:id/productos", addProductsToCart);
