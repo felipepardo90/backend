@@ -12,7 +12,7 @@ class Contenedor {
       try {
         object.id = this.products.length + 1;
         this.products.push(object);
-        const json_products = JSON.stringify(this.products, null, ' ');
+        const json_products = JSON.stringify(this.products, null, " ");
         fs.writeFileSync("src/products.json", json_products, "utf-8");
         return object;
       } catch (err) {
@@ -24,16 +24,20 @@ class Contenedor {
   update = (object, clientId) => {
     // actualiza un objecto según el ID
 
-    let data = this.products.findIndex(({ id }) => id == clientId);
-    if (data != -1) {
-      try {
-        object.id = clientId;
-        this.products[data] = object;
-
-        return object;
-      } catch (error) {
-        console.log(`Error en update: ${err}`);
-      }
+    let updatedData = this.products.findIndex(({ id }) => id == clientId);
+  
+    if (updatedData == -1) {
+      return null;
+    }
+    try {
+      object.id = +clientId;
+      this.products[updatedData] = object;
+      const json_products = JSON.stringify(this.products, null, " ");
+      console.log(json_products);
+      fs.writeFileSync("src/products.json", json_products, "utf-8");
+      return object;
+    } catch (error) {
+      console.log(`Error en update: ${err}`);
     }
   };
 
@@ -65,7 +69,7 @@ class Contenedor {
     try {
       let data = this.products.findIndex(({ id }) => id == clientId);
       this.products.splice(data, 1);
-      let json_products = JSON.stringify(this.products, null, ' ');
+      let json_products = JSON.stringify(this.products, null, " ");
       fs.writeFileSync("src/products.json", json_products, "utf-8");
       return this.products;
     } catch (err) {
@@ -78,4 +82,14 @@ module.exports = Contenedor;
 
 // const container = new Contenedor();
 
-// console.log(container.deleteById(8));
+// console.log(
+//   container.update(
+//     {
+//       title: "Submarino",
+//       price: 300,
+//       thumbnail:
+//         "https://www.recetas-argentinas.com/base/stock/Recipe/280-image/280-image_web.jpg",
+//     },
+//     3
+//   )
+// );
