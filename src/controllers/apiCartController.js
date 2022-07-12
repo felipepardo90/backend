@@ -1,9 +1,15 @@
-const Contenedor = require("../utils/Container");
-const data = new Contenedor();
+const Cart = require("../utils/Cart");
+const Producto = require("../utils/Container");
 
 
-const newCart = (req, res)=>{
-    res.json({message: "carrito creado perris"})
+const getAllProductsInCart = (req, res) =>{
+    const products = Producto.getAll()
+    res.json('products', {products})
 }
 
-module.exports = {newCart}
+
+const newCart = (req, res) => {
+res.json(new Cart().getCart())
+}
+
+module.exports = {newCart, getAllProductsInCart}

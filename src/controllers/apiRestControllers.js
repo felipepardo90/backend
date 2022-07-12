@@ -16,18 +16,22 @@ const getProductById = (req, res) => {
 
 const postProduct = (req, res) => {
   let data = file.save(req.body);
-  if (!data){
-    res.json({error: "se deben completar todos los campos"})
+  if (!data) {
+    res.json({ error: "se deben completar todos los campos" });
   }
   res.json(data);
 };
 
 const putProduct = (req, res) => {
   let data = file.update(req.body, req.params.id);
-  if (data == null){
-    res.json({error: `No se ha encontrado un producto con id ${req.params.id}`})
+  if (data == null) {
+    res.json({
+      error: `No se ha encontrado un producto con id ${req.params.id}`,
+    });
   }
-  res.json({message:`el producto ${req.params.id} se ha modificado exitosamente`});
+  res.json({
+    message: `el producto ${req.params.id} se ha modificado exitosamente`,
+  });
 };
 
 const deleteProduct = (req, res) => {
@@ -35,7 +39,7 @@ const deleteProduct = (req, res) => {
   if (!data) {
     res.json({ error: "producto no encontrado" });
   }
-  res.json({message:`producto ${req.params.id} eliminado`});
+  res.json({ message: `producto ${req.params.id} eliminado` });
 };
 
 module.exports = {

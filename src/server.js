@@ -1,5 +1,5 @@
 const app = require("./app");
-const productos = require("./products.json");
+const productos = require("./db/products.json");
 const Contenedor = require("./utils/Container");
 const data = new Contenedor();
 // starting server

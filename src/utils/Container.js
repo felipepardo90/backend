@@ -2,7 +2,7 @@ const fs = require("fs");
 
 class Contenedor {
   constructor() {
-    this.products = require("../products.json");
+    this.products = require("../db/products.json");
   }
 
   save = (object) => {
