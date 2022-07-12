@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 let cart = null;
 
 class Cart {
@@ -7,7 +9,7 @@ class Cart {
     }
 
     const existingProductIndex = cart.products.findIndex(
-      ({id}) => id == product.id
+      ({ id }) => id == product.id
     ); // para chequear si ya existe un producto en el carrito
     if (existingProductIndex >= 0) {
       // si existe ya un producto, se asignará un id de acuerdo al último producto generado
@@ -27,7 +29,7 @@ class Cart {
   }
 
   delete(productId) {
-    const isExisting = cart.products.findIndex(({id}) => id == productId);
+    const isExisting = cart.products.findIndex(({ id }) => id == productId);
     if (isExisting >= 0) {
       cart.products.splice(isExisting, 1);
     }
