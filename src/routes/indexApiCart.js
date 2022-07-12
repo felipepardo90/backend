@@ -3,7 +3,7 @@ const { newCart } = require("../controllers/apiCartController");
 const cartControllers = require("../controllers/apiCartController")
 const router = Router(); 
 
-router.get("/", newCart);
+router.post("/", newCart);
 // router.delete("/:id/productos", deleteCartById);
 router.get("/:id/productos", cartControllers.getAllProductsInCart);
 // router.post("/:id/productos", addProductsToCart);
