@@ -1,39 +1,52 @@
-const fs = require("fs");
 
-let cart = null;
-
-class Cart {
-  save(product) {
-    if (cart === null) {
-      cart = { products: [], totalPrice: 0 };
-    }
-
-    const existingProductIndex = cart.products.findIndex(
-      ({ id }) => id == product.id
-    ); // para chequear si ya existe un producto en el carrito
-    if (existingProductIndex >= 0) {
-      // si existe ya un producto, se asignará un id de acuerdo al último producto generado
-      const exsitingProduct = cart.products[existingProductIndex];
-      exsitingProduct.id += 1;
-    } else {
-      //si no existe, el id asignado será 1
-      product.id = 1;
-      cart.products.push(product);
-    }
-
-    cart.totalPrice += product.price;
+class Cart{
+  constructor(title, description, thumbnail, price, stock, code){
+    this.id=0
+    this.timestamp=new Date(Date.now())
+    this.products = []
   }
 
-  getCart() {
-    return cart;
-  }
-
-  delete(productId) {
-    const isExisting = cart.products.findIndex(({ id }) => id == productId);
-    if (isExisting >= 0) {
-      cart.products.splice(isExisting, 1);
+  updateCart(object) {
+    try {
+        this.id = object.id;
+        this.timestamp = object.timestamp;
+        this.productos = object.productos;
+    } catch(err) {
+        console.log('Error en método updateCart: ', err);
     }
-  }
 }
+
+getAll() {
+    try {
+        return this.productos;
+    } catch(err) {
+        console.log('Error en método getAll: ', err);
+    }
+}
+
+getById(number) {
+    try {
+        const object = this.productos.find(object => object.id === number);
+        return object ? object : null;
+    } catch (err) {
+        console.log('Error en método getById: ', err);
+    }
+}
+
+addProduct(object) {
+    try {
+        this.productos = [...this.productos, object];
+    } catch(err) {
+        console.log('Error en método addProduct: ', err);
+    }
+}
+
+removeProduct(object) {
+    this.productos = this.productos.filter(producto => producto.id != object.id);
+}
+  
+}
+
+
 
 module.exports = Cart;
