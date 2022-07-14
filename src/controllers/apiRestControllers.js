@@ -1,13 +1,14 @@
 const Contenedor = require("../utils/Container");
-const file = new Contenedor();
+const productos = new Contenedor("../db/products.json");
 
-const getAll = (req, res) => {
-  let products = file.getAll();
-  res.json(products);
+const getAll = async (req, res) => {
+  let data = await productos.getAll();
+  console.log("data",data)
+  res.json(data);
 };
 
 const getProductById = (req, res) => {
-  let data = file.getById(req.params.id);
+  let data = productos.getById(req.params.id);
   if (!data) {
     res.json({ error: "producto no encontrado" });
   }
@@ -15,7 +16,7 @@ const getProductById = (req, res) => {
 };
 
 const postProduct = (req, res) => {
-  let data = file.save(req.body);
+  let data = productos.save(req.body);
   if (!data) {
     res.json({ error: "se deben completar todos los campos" });
   }
@@ -23,7 +24,7 @@ const postProduct = (req, res) => {
 };
 
 const putProduct = (req, res) => {
-  let data = file.update(req.body, req.params.id);
+  let data = productos.update(req.body, req.params.id);
   if (data == null) {
     res.json({
       error: `No se ha encontrado un producto con id ${req.params.id}`,

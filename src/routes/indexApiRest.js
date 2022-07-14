@@ -1,8 +1,8 @@
 const { Router } = require("express");
-const { getAll, getProductById} = require("../controllers/apiRestControllers");
+const apiRestControllers = require("../controllers/apiRestControllers");
 const router = Router(); 
 
-router.get("/", getAll);
-router.get("/:id", getProductById);
+router.get("/", apiRestControllers.getAll);
+router.get("/:id", apiRestControllers.getProductById);
 
 module.exports = router;
