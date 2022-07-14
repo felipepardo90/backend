@@ -19,5 +19,20 @@
   "devDependencies": {
     "nodemon": "^2.0.16",
     "webpack": "^5.73.0"
-  }
+  },
+  "name": "backend",
+  "description": "��#\u0000 \u0000b\u0000a\u0000c\u0000k\u0000e\u0000n\u0000d\u0000\r\u0000 \u0000",
+  "version": "1.0.0",
+  "main": "prueba.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felipepardo90/backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felipepardo90/backend/issues"
+  },
+  "homepage": "https://github.com/felipepardo90/backend#readme"
 }
