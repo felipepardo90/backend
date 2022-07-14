@@ -1,5 +1,5 @@
 const Contenedor = require("../utils/Container");
-const data = new Contenedor();
+const data = new Contenedor("./src/products.json");
 
 const formView = (req, res) => {
   res.render("form");
