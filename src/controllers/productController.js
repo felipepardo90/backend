@@ -1,8 +1,8 @@
-const  Contenedor  = require('../utils/Container');
-const  Producto  = require('../utils/Product');
+const  Contenedor  = require('../models/Container');
+const  Producto  = require('../models/Product');
 
 // Base de productos
-const productos = new Contenedor('./src/products.json');
+const productos = new Contenedor('../products.json');
 
 // Devuelve todos los productos
 const getAll = async (req, res) => {
@@ -31,7 +31,7 @@ const getProductById = async (req, res) => {
 const postProduct = async (req, res) => {
     try {
         const { title, description, thumbnail, price, stock, code } = req.body;
-        const producto = new Producto( title, description, thumbnail, Number(price), Number(stock), code );
+        const producto = new Producto( title, description, thumbnail, +(price), +(stock), code );
         let id = await productos.save(producto);
 
         res.status(201).json(id);

@@ -1,7 +1,7 @@
-const  Contenedor  = require('../utils/Container');
-const  Cart  = require('../utils/Cart');
-const productos = new Contenedor('../products.json');
-const carts = new Contenedor('../carts.json');
+const  Contenedor  = require('../models/Container');
+const  Cart  = require('../models/Cart');
+const productos = new Contenedor('./src/products.json');
+const carts = new Contenedor('./src/carts.json');
 
 
 // Crea un carrito y devuelve su id

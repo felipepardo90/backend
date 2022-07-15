@@ -40,7 +40,8 @@ class Contenedor {
     // Recibe un id y devuelve el objeto con ese id, o null si no está.
     try {
       let products = JSON.parse(await fs.promises.readFile(this.file, "utf-8"));
-      const object = products.find((object) => object.id === number);
+      const object = products.find(({id}) => id === number);
+      console.log(object, "object45")
       return object ? object : null;
     } catch (err) {
       console.log("Error en método getById: ", err);
@@ -193,6 +194,6 @@ module.exports = Contenedor;
 
 // module.exports = Contenedor;
 
-// const container = new Contenedor("./products.json");
+// const container = new Contenedor("./src/products.json");
 
-// console.log(container.getAll());
+// console.log(container.getById(2), "prueba");

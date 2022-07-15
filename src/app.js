@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
-const indexApiRest = require("./routes/indexApiRest");
+const indexApiRest = require("./routes/products");
 const indexApi = require("./routes/indexApi");
-const indexApiCart = require("./routes/indexApiCart")
+const indexApiCart = require("./routes/cart")
 const adminRoutes = require("./routes/adminRoutes")
 const path = require("path");
 const { engine } = require("express-handlebars");

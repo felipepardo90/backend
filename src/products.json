@@ -36,9 +36,9 @@
 		"id": 6
 	},
 	{
-		"id": 7,
-		"timestamp": "2022-07-14T18:50:29.671Z",
-		"price": null,
-		"stock": null
+		"title": "Buñuelos crema/miel",
+		"price": "200",
+		"thumbnail": "https://th.bing.com/th/id/OIP.JS7HrV_DPgxhPIK4eL8BpQHaHX?pid=ImgDet&rs=1",
+		"id": 7
 	}
 ]

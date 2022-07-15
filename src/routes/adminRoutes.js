@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const adminControllers = require("../controllers/apiRestControllers");
-const adminCartControllers = require("../controllers/apiCartController");
+const adminControllers = require("../controllers/productController");
+const adminCartControllers = require("../controllers/cartControllers");
 const router = Router();
 
 // PRODUCTOS
@@ -14,9 +14,9 @@ router.delete("/api/productos/:id", adminControllers.deleteProduct);
 // CARRITO
 
 router.post("/api/carrito", adminCartControllers.newCart);
-// router.delete("/api/carrito/:id", deleteCartById);
-// router.get("/api/carrito/:id/productos", getAllProductsInCart);
-// router.post("/api/carrito/:id/productos", addProductsToCart);
-// router.delete("/api/carrito/:id/productos/:id_prod", deleteProductFromCartById);
+router.delete("/api/carrito/:id", adminCartControllers.deleteCartById);
+router.get("/api/carrito/:id/productos", adminCartControllers.getAllProductsInCart);
+router.post("/api/carrito/:id/productos", adminCartControllers.addProductsToCart);
+router.delete("/api/carrito/:id/productos/:id_prod", adminCartControllers.deleteProductFromCartById);
 
 module.exports = router;

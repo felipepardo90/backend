@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router(); 
-const cartControllers = require("../controllers/apiCartController")
+const cartControllers = require("../controllers/cartControllers")
 
 router.post("/", cartControllers.newCart);
 router.delete("/:id/productos", cartControllers.deleteCartById);

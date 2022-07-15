@@ -1,6 +1,6 @@
 const app = require("./app");
 const productos = require("./products.json");
-const Contenedor = require("./utils/Container");
+const Contenedor = require("./models/Container");
 const data = new Contenedor();
 // starting server
 
